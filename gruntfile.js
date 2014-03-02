@@ -6,8 +6,8 @@ module.exports = function(grunt) {
 		coffee: {
 			compile: {
 				files: {
-					'app/assets/js/vendor/coffee-vendor-compiled.js' : 'src/js/vendor/*.coffee',
-					'app/assets/js/coffee-application-compiled.js' : [
+					'assets/js/vendor/coffee-vendor-compiled.js' : 'app/js/vendor/*.coffee',
+					'assets/js/coffee-application-compiled.js' : [
 						'src/js/**/*.coffee',
 						'src/js/vendor/!(*).coffee'
 					]
@@ -17,14 +17,14 @@ module.exports = function(grunt) {
 
 		concat: {
 			dist: {
-				src: ['app/assets/js/vendor/*.js'],
-				dest: 'app/assets/js/production.js'
+				src: ['assets/js/vendor/*.js'],
+				dest: 'assets/js/production.js'
 			}
 		},
 
 		clean: [
-			'app/assets/js/vendor/coffee-vendor-compiled.js',
-			'app/assets/js/coffee-application-compiled.js'
+			'assets/js/vendor/coffee-vendor-compiled.js',
+			'assets/js/coffee-application-compiled.js'
 		],
 
 		sass: {
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 					style: 'compressed'
 				},
 				files: {
-					'app/assets/css/application.min.css' : 'app/assets/css/global.scss'
+					'assets/css/application.min.css' : 'assets/css/global.scss'
 				}
 			}
 		}
