@@ -1,1 +1,17 @@
 <h1>Helloooo</h1>
+
+<%= Echowrap.artist_search(name: 'daft punk', bucket: ['songs'], results: 10) %>
+
+<% Echowrap.artist_search(name: 'daft punk', bucket: ['songs'], results: 10).each do |result| %>
+	<p>
+		Artist: <%= result.name %>
+
+		<ul>
+			<% result.songs.each do |song| %>
+				<li>
+					Song: <%= song.title %>
+				</li>
+			<% end %>
+		</ul>
+	</p>
+<% end %>

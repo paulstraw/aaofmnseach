@@ -6,10 +6,10 @@ module.exports = function(grunt) {
 		coffee: {
 			compile: {
 				files: {
-					'assets/js/vendor/coffee-vendor-compiled.js' : 'app/js/vendor/*.coffee',
-					'assets/js/coffee-application-compiled.js' : [
-						'src/js/**/*.coffee',
-						'src/js/vendor/!(*).coffee'
+					'public/js/vendor/coffee-vendor-compiled.js' : 'public/js/vendor/*.coffee',
+					'public/js/coffee-application-compiled.js' : [
+						'public/js/**/*.coffee',
+						'public/js/vendor/!(*).coffee'
 					]
 				}
 			}
@@ -17,14 +17,14 @@ module.exports = function(grunt) {
 
 		concat: {
 			dist: {
-				src: ['assets/js/vendor/*.js'],
-				dest: 'assets/js/production.js'
+				src: ['public/js/vendor/*.js', 'public/js/coffee-vendor-compiled.js', 'public/js/coffee-application-compiled.js'],
+				dest: 'public/js/production.js'
 			}
 		},
 
 		clean: [
-			'assets/js/vendor/coffee-vendor-compiled.js',
-			'assets/js/coffee-application-compiled.js'
+			'public/js/vendor/coffee-vendor-compiled.js',
+			'public/js/coffee-application-compiled.js'
 		],
 
 		sass: {
@@ -33,8 +33,28 @@ module.exports = function(grunt) {
 					style: 'compressed'
 				},
 				files: {
-					'assets/css/application.min.css' : 'assets/css/global.scss'
+					'public/css/application.min.css' : 'public/css/global.scss'
 				}
+			}
+		},
+
+		// ==== Watcher ===
+
+		watch: {
+			scripts: {
+                files: ['public/js/**/*.coffee'],
+                tasks: ['coffee', 'concat', 'clean'],
+                options: {
+                    spawn: false
+                }
+            },
+
+			css: {
+				files: ['public/css/**/*.scss'],
+                tasks: ['sass'],
+                options: {
+                    spawn: false
+                }
 			}
 		}
 
@@ -45,5 +65,5 @@ module.exports = function(grunt) {
 
 	// Register your tasks here
 	grunt.registerTask('default', ['concat']);
-	grunt.registerTask('dev', ['coffee', 'concat', 'clean', 'sass']);
+	grunt.registerTask('dev', ['watch']);
 };
