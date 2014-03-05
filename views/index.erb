@@ -1,17 +1,9 @@
-<h1>Helloooo</h1>
+<h1>AA of MN Music Search</h1>
 
-<%= Echowrap.artist_search(name: 'daft punk', bucket: ['songs'], results: 10) %>
-
-<% Echowrap.artist_search(name: 'daft punk', bucket: ['songs'], results: 10).each do |result| %>
-	<p>
-		Artist: <%= result.name %>
-
-		<ul>
-			<% result.songs.each do |song| %>
-				<li>
-					Song: <%= song.title %>
-				</li>
-			<% end %>
-		</ul>
-	</p>
-<% end %>
+<form action="/search" method="post">
+	<fieldset>
+		<label for="name">Artist Name</label>
+		<input type="text" name="name" id="name">
+		<button>Search</button>
+	</fieldset>
+</form>
