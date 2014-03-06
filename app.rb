@@ -11,9 +11,7 @@ get '/' do
 end
 
 post '/search' do
+  results = wrapper.search(params[:name])
 
-  response = wrapper.search(params[:name])
-  # results = Nokogiri::XML(response)
-
-  erb :search, locals: {results: response}
+  erb :search, locals: {results: results}
 end

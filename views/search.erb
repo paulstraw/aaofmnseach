@@ -1,5 +1,11 @@
 <h1>Search Results</h1>
 
 <ul>
-	<%= results %>
+	<% results.searchresults.each do |result| %>
+		<li>
+			<strong>Title:</strong> <%= result.title %><br>
+			<strong>Type:</strong> <%= result.type %><br>
+			<strong>URI:</strong> <%= result.uri %><br>
+		</li>
+	<% end %>
 </ul>
